@@ -35,6 +35,12 @@ rm:
 exec:
 	docker exec $(TTY_OPTS) $(NAME) $(PROG)
 
+init:
+	docker exec $(NAME) chown -R root:root /etc/pacman.d/
+	docker exec $(NAME) pacman-key --init
+	docker exec $(NAME) pacman-key --populate
+	docker exec $(NAME) pacman -S archlinuxcn-keyring
+
 install:
 	docker exec $(NAME) pacman -Syu --noconfirm $(PKGS) --overwrite "/etc/ssh/*"
 
