@@ -1,0 +1,9 @@
+-include Makefile.cfg
+
+NAME  := distccd
+PKGS  += distcc
+
+PORTS := 36320:3632
+
+distccd:
+	docker exec $(DETACH_OPTS) $(NAME) /usr/bin/distccd --no-detach --daemon --allow-private
