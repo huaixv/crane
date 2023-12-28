@@ -18,7 +18,7 @@ VOL_OPTS    := $(addprefix -v , $(VOLS))
 PORT_OPTS   := $(addprefix -p , $(PORTS))
 EXPOSE_OPTS := $(addprefix --expose , $(EXPOSES))
 
-RUN_OPTS := $(TTY_OPTS) $(DETACH_OPTS) $(NET_OPTS) $(VOL_OPTS) $(PORT_OPTS) $(EXPOSE_OPTS)
+override RUN_OPTS += $(TTY_OPTS) $(DETACH_OPTS) $(NET_OPTS) $(VOL_OPTS) $(PORT_OPTS) $(EXPOSE_OPTS)
 
 run:
 	docker run $(RUN_OPTS) --name $(NAME) $(IMAGE):$(TAG)
