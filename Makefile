@@ -1,6 +1,6 @@
 ## Usage
 ##
-## make run && make install && make user && make sshd
+## make run && make init && make install && make user && make sshd
 ##
 ## Specify the following options from command-line as needed
 ##
@@ -39,6 +39,7 @@ init:
 	docker exec $(NAME) chown -R root:root /etc/pacman.d/
 	docker exec $(NAME) pacman-key --init
 	docker exec $(NAME) pacman-key --populate
+	docker exec $(NAME) pacman -Sy --noconfirm archlinux-keyring
 	docker exec $(NAME) pacman -Sy --noconfirm archlinuxcn-keyring
 
 install:
