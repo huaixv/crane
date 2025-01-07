@@ -1,0 +1,3 @@
+[submodule "kconfig"]
+	path = kconfig
+	url = ../kconfig.git

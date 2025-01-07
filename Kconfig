@@ -1,0 +1,7 @@
+# Kconfig
+
+mainmenu "Docker Runner Configuration Menu"
+
+config HAVE_DOT_CONFIG
+    bool
+    default y

@@ -5,6 +5,13 @@
 ## Specify the following options from command-line as needed
 ##
 
+-include .config
+
+ifneq ($(HAVE_DOT_CONFIG),y)
+all:
+	$(error Please configure this project first (e.g. "make menuconfig"))
+else # ifneq ($(HAVE_DOT_CONFIG),y)
+
 IMAGE := archlinux
 TAG   := base-devel
 
@@ -61,3 +68,8 @@ sshdgenkeys: ./ssh/ssh_host_ecdsa_key ./ssh/ssh_host_ed25519_key ./ssh/ssh_host_
 
 sshd: sshdgenkeys
 	docker exec $(DETACH_OPTS) $(NAME) /usr/bin/sshd -D
+
+endif # ifneq ($(HAVE_DOT_CONFIG),y)
+
+export CONFIG_=
+include kconfig/config.mk
