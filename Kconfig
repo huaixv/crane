@@ -5,3 +5,9 @@ mainmenu "Docker Runner Configuration Menu"
 config HAVE_DOT_CONFIG
     bool
     default y
+
+config NAME
+    string "Container name"
+    default "mycontainer"
+    help
+      The name of the container.
