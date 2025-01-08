@@ -17,12 +17,11 @@ include $(CONFIG_MK)
 
 TTY_OPTS    := -it
 DETACH_OPTS := -d
-NET_OPTS    := #--network=host
 VOL_OPTS    := $(addprefix -v , $(VOLS))
 PORT_OPTS   := $(addprefix -p , $(PORTS))
 EXPOSE_OPTS := $(addprefix --expose , $(EXPOSES))
 
-override RUN_OPTS += $(TTY_OPTS) $(DETACH_OPTS) $(NET_OPTS) $(VOL_OPTS) $(PORT_OPTS) $(EXPOSE_OPTS)
+override RUN_OPTS += $(TTY_OPTS) $(DETACH_OPTS) $(NETWORK_OPTS) $(VOL_OPTS) $(PORT_OPTS) $(EXPOSE_OPTS)
 
 run:
 	docker run $(RUN_OPTS) --name $(NAME) $(IMAGE):$(TAG)

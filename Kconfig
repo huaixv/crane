@@ -114,3 +114,22 @@ menu "Distribution Options"
         default "apt" if PM_apt
         default "none"
 endmenu
+
+menu "Docker Options"
+    choice NETWORK_DRIVER
+        prompt "Network driver"
+        default NETWORK_bridge
+        config NETWORK_bridge
+            bool "bridge"
+        config NETWORK_host
+            bool "host"
+        config NETWORK_none
+            bool "none"
+    endchoice  
+
+    config NETWORK_OPTS
+        string
+        default "--network=host" if NETWORK_host
+        default "--network=bridge" if NETWORK_bridge
+        default "" if NETWORK_none
+endmenu
