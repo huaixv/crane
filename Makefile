@@ -36,7 +36,7 @@ rm:
 	docker rm $(NAME)
 
 exec:
-	docker exec $(EXEC_OPTS) $(NAME) $(PROG)
+	docker exec $(EXEC_FG_OPTS) $(NAME) $(PROG)
 
 init:
 	docker exec $(NAME) chown -R root:root /etc/pacman.d/
@@ -63,7 +63,7 @@ sshdgenkeys: ./ssh/ssh_host_ecdsa_key ./ssh/ssh_host_ed25519_key ./ssh/ssh_host_
 	docker exec $(NAME) bash -c "/usr/bin/ssh-keygen -A"
 
 sshd: sshdgenkeys
-	docker exec $(DETACH_OPTS) $(NAME) /usr/bin/sshd -D
+	docker exec $(EXEC_BG_OPTS) $(NAME) /usr/bin/sshd -D
 
 endif # ifneq ($(HAVE_DOT_CONFIG),y)
 
