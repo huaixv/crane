@@ -116,6 +116,18 @@ menu "Distribution Options"
 endmenu
 
 menu "Docker Options"
+    config RUN_OPTS
+        string "Options for docker run"
+        default "-itd"
+        help
+            Options for docker run command.
+    
+    config EXEC_OPTS
+        string "Options for docker exec"
+        default "-it"
+        help
+            Options for docker exec command.
+
     choice NETWORK_DRIVER
         prompt "Network driver"
         default NETWORK_bridge

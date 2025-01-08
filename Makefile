@@ -21,7 +21,7 @@ VOL_OPTS    := $(addprefix -v , $(VOLS))
 PORT_OPTS   := $(addprefix -p , $(PORTS))
 EXPOSE_OPTS := $(addprefix --expose , $(EXPOSES))
 
-override RUN_OPTS += $(TTY_OPTS) $(DETACH_OPTS) $(NETWORK_OPTS) $(VOL_OPTS) $(PORT_OPTS) $(EXPOSE_OPTS)
+override RUN_OPTS += $(NETWORK_OPTS) $(VOL_OPTS) $(PORT_OPTS) $(EXPOSE_OPTS)
 
 run:
 	docker run $(RUN_OPTS) --name $(NAME) $(IMAGE):$(TAG)
@@ -36,7 +36,7 @@ rm:
 	docker rm $(NAME)
 
 exec:
-	docker exec $(TTY_OPTS) $(NAME) $(PROG)
+	docker exec $(EXEC_OPTS) $(NAME) $(PROG)
 
 init:
 	docker exec $(NAME) chown -R root:root /etc/pacman.d/
