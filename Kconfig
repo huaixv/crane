@@ -19,11 +19,19 @@ menu "Distribution Options"
         config DISTRO_archlinux
             bool "Arch Linux"
             select PM_pacman
+        config DISTRO_debian
+            bool "Debian"
+            select PM_apt
+        config DISTRO_ubuntu
+            bool "Ubuntu"
+            select PM_apt
     endchoice
 
     config DISTRO
         string
         default "archlinux" if DISTRO_archlinux
+        default "debian" if DISTRO_debian
+        default "ubuntu" if DISTRO_ubuntu
         default "none"
 
     choice
@@ -32,11 +40,19 @@ menu "Distribution Options"
         config IMAGE_archlinux
             bool "archlinux"
             depends on DISTRO_archlinux
+        config IMAGE_debian
+            bool "debian"
+            depends on DISTRO_debian
+        config IMAGE_ubuntu
+            bool "ubuntu"
+            depends on DISTRO_ubuntu
     endchoice
 
     config IMAGE
         string
         default "archlinux" if DISTRO_archlinux
+        default "debian" if DISTRO_debian
+        default "ubuntu" if DISTRO_ubuntu
         default "none"
 
     choice
@@ -44,10 +60,31 @@ menu "Distribution Options"
         default TAG_base
         config TAG_base
             bool "base"
+            depends on IMAGE_archlinux
         config TAG_base_devel
             bool "base-devel"
+            depends on IMAGE_archlinux
         config TAG_multilib_devel
             bool "multilib-devel"
+            depends on IMAGE_archlinux
+        config TAG_bookworm
+            bool "12 bookworm"
+            depends on IMAGE_debian
+        config TAG_bullseye
+            bool "11 bullseye"
+            depends on IMAGE_debian
+        config TAG_sid
+            bool "sid"
+            depends on IMAGE_debian
+        config TAG_focal
+            bool "20.04 focal"
+            depends on IMAGE_ubuntu
+        config TAG_jammy
+            bool "22.04 jammy"
+            depends on IMAGE_ubuntu
+        config TAG_noble
+            bool "24.04 noble"
+            depends on IMAGE_ubuntu
     endchoice
 
     config TAG
@@ -64,8 +101,16 @@ menu "Distribution Options"
         help
             Use pacman package manager for Arch Linux.
 
+    config PM_apt
+        bool "Use apt as package manager"
+        default y
+        depends on DISTRO_debian || DISTRO_ubuntu
+        help
+            Use apt package manager for Debian or Ubuntu.
+
     config PM
         string
         default "pacman" if PM_pacman
+        default "apt" if PM_apt
         default "none"
 endmenu
