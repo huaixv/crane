@@ -12,9 +12,6 @@ all:
 	$(error Please configure this project first (e.g. "make menuconfig"))
 else # ifneq ($(HAVE_DOT_CONFIG),y)
 
-IMAGE := archlinux
-TAG   := base-devel
-
 CONFIG_MK ?= Makefile.cfg
 include $(CONFIG_MK)
 

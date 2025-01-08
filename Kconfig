@@ -11,3 +11,61 @@ config NAME
     default "mycontainer"
     help
       The name of the container.
+
+menu "Distribution Options"
+    choice
+        prompt "Base distribution"
+        default DISTRO_archlinux
+        config DISTRO_archlinux
+            bool "Arch Linux"
+            select PM_pacman
+    endchoice
+
+    config DISTRO
+        string
+        default "archlinux" if DISTRO_archlinux
+        default "none"
+
+    choice
+        prompt "Base image"
+        default IMAGE_archlinux
+        config IMAGE_archlinux
+            bool "archlinux"
+            depends on DISTRO_archlinux
+    endchoice
+
+    config IMAGE
+        string
+        default "archlinux" if DISTRO_archlinux
+        default "none"
+
+    choice
+        prompt "Base image tag"
+        default TAG_base
+        config TAG_base
+            bool "base"
+        config TAG_base_devel
+            bool "base-devel"
+        config TAG_multilib_devel
+            bool "multilib-devel"
+    endchoice
+
+    config TAG
+        string
+        default "base" if TAG_base
+        default "base-devel" if TAG_base_devel
+        default "multilib-devel" if TAG_multilib_devel
+        default "latest"
+
+    config PM_pacman
+        bool "Use pacman as package manager"
+        default y
+        depends on DISTRO_archlinux
+        help
+            Use pacman package manager for Arch Linux.
+
+    config PM
+        string
+        default "pacman" if PM_pacman
+        default "none"
+endmenu
