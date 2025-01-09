@@ -42,6 +42,9 @@ exec:
 	docker exec $(EXEC_FG_OPTS) $(NAME) $(PROG)
 
 init:
+ifeq ($(COPY_PACMAN_CONF),y)
+	docker cp ./assets/pacman.conf $(NAME):/etc/pacman.conf
+endif
 	docker exec $(NAME) chown -R root:root /etc/pacman.d/
 	docker exec $(NAME) pacman-key --init
 	docker exec $(NAME) pacman-key --populate

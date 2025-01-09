@@ -119,6 +119,13 @@ menu "Distribution Options"
         default "pacman -Syu --noconfirm --overwrite '*'" if PM_pacman
         default "apt update && apt upgrade -y" if PM_apt
         default "echo"
+
+    config COPY_PACMAN_CONF
+        bool "Copy pacman.conf to the container"
+        default y
+        depends on PM_pacman
+        help
+            Copy pacman.conf to the container.
 endmenu
 
 menu "Docker Options"
