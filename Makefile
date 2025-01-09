@@ -40,18 +40,11 @@ rm:
 exec:
 	docker exec $(EXEC_FG_OPTS) --user $(USER) $(NAME) $(SH)
 
-init:
+install:
 ifeq ($(COPY_PACMAN_CONF),y)
 	docker cp ./assets/pacman.conf $(NAME):/etc/pacman.conf
 	docker exec $(NAME) pacman -Syu --noconfirm archlinuxcn-keyring
 endif
-	docker exec $(NAME) chown -R root:root /etc/pacman.d/
-	docker exec $(NAME) pacman-key --init
-	docker exec $(NAME) pacman-key --populate
-	docker exec $(NAME) pacman -Sy --noconfirm archlinux-keyring
-	docker exec $(NAME) pacman -Sy --noconfirm archlinuxcn-keyring
-
-install:
 	docker exec $(NAME) $(call unquote,$(PM_INSTALL)) $(PKGS)
 
 user:
