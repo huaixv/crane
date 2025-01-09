@@ -345,4 +345,62 @@ menu "Software Packages"
             string
             default "rsync"
             depends on PKG_USE_rsync
+
+        config PKG_USE_sudo
+            bool "sudo"
+            default y
+            help
+                Sudo privilege escalation.
+        config PKG_sudo
+            string
+            default "sudo"
+            depends on PKG_USE_sudo
+endmenu
+
+
+menu "User Options"
+    config USER
+        string "User name"
+        default "user"
+        help
+            The user name.
+
+    config CREATE_GROUP
+        bool "Create group"
+        default y
+        help
+            Create group for the user.
+    config CREATE_GROUP_OPT
+        string
+        default "-U" if CREATE_GROUP
+        default "-N"
+
+    config CREATE_HOME
+        bool "Create home directory"
+        default y
+        help
+            Create home directory for the user.
+    config CREATE_HOME_OPT
+        string
+        default "-m" if CREATE_HOME
+        default "-M"
+
+    config ALLOW_SUDO
+        bool "Allow to use sudo"
+        default y
+        depends on PKG_USE_sudo
+        help
+            Allow the user to use sudo.
+    config ALLOW_SUDO_OPT
+        string
+        default "-G sudo" if ALLOW_SUDO
+        default ""
+
+    config SH
+        string "Shell"
+        default "/bin/fish" if PKG_USE_fish
+        default "/bin/zsh" if PKG_USE_zsh
+        default "/bin/bash"
+        help
+            The shell.
 endmenu
