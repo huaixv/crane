@@ -157,3 +157,192 @@ menu "Docker Options"
         default "--network=bridge" if NETWORK_bridge
         default "" if NETWORK_none
 endmenu
+
+
+menu "Software Packages"
+    comment "Shells"
+        config PKG_USE_fish
+            bool "fish"
+            default y
+            help
+                Fish shell.
+        config PKG_fish
+            string
+            default "fish"
+            depends on PKG_USE_fish
+
+        config PKG_USE_zsh
+            bool "zsh"
+            default n
+            help
+                Zsh shell.
+        config PKG_zsh
+            string
+            default "zsh"
+            depends on PKG_USE_zsh
+
+    
+    comment "Editors"
+        config PKG_USE_neovim
+            bool "neovim"
+            default y
+            help
+                Neovim text editor.
+        config PKG_neovim
+            string
+            default "neovim"
+            depends on PKG_USE_neovim
+        
+        config PKG_USE_vim
+            bool "vim"
+            default n
+            help
+                Vim text editor.
+        config PKG_vim
+            string
+            default "vim"
+            depends on PKG_USE_vim
+
+
+    comment "Version Control Systems"
+        config PKG_USE_git
+            bool "git"
+            default y
+            help
+                Git version control system.
+        config  PKG_git
+            string
+            default "git"
+            depends on PKG_USE_git
+
+
+    comment "Programming Languages & Compilers"
+        config PKG_USE_python
+            bool "python"
+            default y
+            help
+                Python programming language.
+        config PKG_python
+            string
+            default "python"
+            depends on PKG_USE_python
+        
+        config PKG_USE_gcc
+            bool "gcc"
+            default y
+            help
+                GNU Compiler Collection.
+        config PKG_gcc
+            string
+            default "gcc"
+            depends on PKG_USE_gcc
+        
+        config PKG_USE_clang
+            bool "clang"
+            default n
+            help
+                Clang compiler.
+        config PKG_clang
+            string
+            default "clang"
+            depends on PKG_USE_clang
+
+    comment "Build tools"
+        config PKG_USE_build_essential
+            bool "build-essential"
+            default y
+            depends on DISTRO_debian || DISTRO_ubuntu
+            help
+                Build essential.
+        config PKG_build_essential
+            string
+            default "build-essential"
+            depends on PKG_USE_build_essential
+
+        config PKG_USE_base_devel
+            bool "base-devel"
+            default y
+            depends on DISTRO_archlinux
+            help
+                Base development tools.
+        config PKG_base_devel
+            string
+            default "base-devel"
+            depends on PKG_USE_base_devel
+
+        config PKG_USE_cmake
+            bool "cmake"
+            default y
+            help
+                CMake build system.
+        config PKG_cmake
+            string
+            default "cmake"
+            depends on PKG_USE_cmake
+        
+        config PKG_USE_ninja
+            bool "ninja"
+            default y
+            help
+                Ninja build system.
+        config PKG_ninja
+            string
+            default "ninja" if DISTRO_archlinux
+            default "ninja-build" if DISTRO_debian || DISTRO_ubuntu
+            depends on PKG_USE_ninja
+
+        config PKG_USE_meson
+            bool "meson"
+            default n
+            help
+                Meson build system.
+        config PKG_meson
+            string
+            default "meson"
+            depends on PKG_USE_meson
+
+
+    comment "Servers"
+        config PKG_USE_openssh
+            bool "openssh"
+            default y
+            help
+                OpenSSH client and server.
+        config PKG_openssh
+            string 
+            default "openssh" if DISTRO_archlinux
+            default "openssh-client openssh-server" if DISTRO_debian || DISTRO_ubuntu
+            depends on PKG_USE_openssh
+
+    comment "Utilities"
+        config PKG_USE_fdfind
+            bool "fdfind"
+            default y
+            help
+                Fd file finder.
+        config PKG_fdfind
+            string
+            default "fd" if DISTRO_archlinux
+            default "fd-find" if DISTRO_debian || DISTRO_ubuntu
+            depends on PKG_USE_fdfind
+        
+        config PKG_USE_ripgrep
+            bool "ripgrep"
+            default y
+            help
+                Ripgrep search tool.
+        config PKG_ripgrep
+            string
+            default "ripgrep"
+            depends on PKG_USE_ripgrep
+
+        config PKG_USE_rsync
+            bool "rsync"
+            default y
+            help
+                Rsync file transfer utility.
+        config PKG_rsync
+            string
+            default "rsync"
+            depends on PKG_USE_rsync
+endmenu

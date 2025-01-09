@@ -12,6 +12,7 @@ all:
 	$(error Please configure this project first (e.g. "make menuconfig"))
 else # ifneq ($(HAVE_DOT_CONFIG),y)
 
+include scripts/pkg.mk
 include scripts/util.mk
 
 CONFIG_MK ?= Makefile.cfg
