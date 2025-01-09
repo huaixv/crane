@@ -1,6 +1,6 @@
 ## Usage
 ##
-## make run && make init && make install && make user && make sshd
+## make run && make install && make user && make sshd
 ##
 ## Specify the following options from command-line as needed
 ##
