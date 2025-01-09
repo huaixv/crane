@@ -39,7 +39,7 @@ rm:
 	docker rm $(NAME)
 
 exec:
-	docker exec $(EXEC_FG_OPTS) $(NAME) $(PROG)
+	docker exec $(EXEC_FG_OPTS) --user $(USER) $(NAME) $(SH)
 
 init:
 ifeq ($(COPY_PACMAN_CONF),y)
