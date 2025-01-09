@@ -16,6 +16,8 @@ include scripts/docker.mk
 include scripts/pkg.mk
 include scripts/util.mk
 
+include scripts/arch.mk
+
 CONFIG_MK ?= Makefile.cfg
 include $(CONFIG_MK)
 
@@ -41,10 +43,6 @@ exec:
 	docker exec $(EXEC_FG_OPTS) --user $(USER) $(NAME) $(SH)
 
 install:
-ifeq ($(COPY_PACMAN_CONF),y)
-	docker cp ./etc/pacman.conf $(NAME):/etc/pacman.conf
-	docker exec $(NAME) pacman -Syu --noconfirm archlinuxcn-keyring
-endif
 	docker exec $(NAME) $(call unquote,$(PM_INSTALL)) $(PKGS)
 
 user:
