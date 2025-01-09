@@ -129,24 +129,6 @@ menu "Distribution Options"
 endmenu
 
 menu "Docker Options"
-    config RUN_OPTS
-        string "Options for docker run"
-        default "-itd"
-        help
-            Options for docker run command.
-    
-    config EXEC_FG_OPTS
-        string "Options for foreground docker exec"
-        default "-it"
-        help
-            Options for foreground docker exec command.
-
-    config EXEC_BG_OPTS
-        string "Options for background docker exec"
-        default "-d"
-        help
-            Options for background docker exec command.
-
     choice NETWORK_DRIVER
         prompt "Network driver"
         default NETWORK_bridge

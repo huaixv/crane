@@ -12,14 +12,13 @@ all:
 	$(error Please configure this project first (e.g. "make menuconfig"))
 else # ifneq ($(HAVE_DOT_CONFIG),y)
 
+include scripts/docker.mk
 include scripts/pkg.mk
 include scripts/util.mk
 
 CONFIG_MK ?= Makefile.cfg
 include $(CONFIG_MK)
 
-TTY_OPTS    := -it
-DETACH_OPTS := -d
 VOL_OPTS    := $(addprefix -v , $(VOLS))
 PORT_OPTS   := $(addprefix -p , $(PORTS))
 EXPOSE_OPTS := $(addprefix --expose , $(EXPOSES))
@@ -27,7 +26,7 @@ EXPOSE_OPTS := $(addprefix --expose , $(EXPOSES))
 override RUN_OPTS += $(NETWORK_OPTS) $(VOL_OPTS) $(PORT_OPTS) $(EXPOSE_OPTS)
 
 run:
-	docker run $(RUN_OPTS) --name $(NAME) $(IMAGE):$(TAG)
+	docker run $(RUN_BG_OPTS) $(RUN_OPTS) --name $(NAME) $(IMAGE):$(TAG)
 
 start:
 	docker start $(NAME)
