@@ -44,6 +44,7 @@ exec:
 init:
 ifeq ($(COPY_PACMAN_CONF),y)
 	docker cp ./assets/pacman.conf $(NAME):/etc/pacman.conf
+	docker exec $(NAME) pacman -Syu --noconfirm archlinuxcn-keyring
 endif
 	docker exec $(NAME) chown -R root:root /etc/pacman.d/
 	docker exec $(NAME) pacman-key --init
