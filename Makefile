@@ -42,7 +42,7 @@ exec:
 
 install:
 ifeq ($(COPY_PACMAN_CONF),y)
-	docker cp ./assets/pacman.conf $(NAME):/etc/pacman.conf
+	docker cp ./etc/pacman.conf $(NAME):/etc/pacman.conf
 	docker exec $(NAME) pacman -Syu --noconfirm archlinuxcn-keyring
 endif
 	docker exec $(NAME) $(call unquote,$(PM_INSTALL)) $(PKGS)
