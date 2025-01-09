@@ -12,6 +12,8 @@ all:
 	$(error Please configure this project first (e.g. "make menuconfig"))
 else # ifneq ($(HAVE_DOT_CONFIG),y)
 
+include scripts/util.mk
+
 CONFIG_MK ?= Makefile.cfg
 include $(CONFIG_MK)
 
@@ -46,7 +48,7 @@ init:
 	docker exec $(NAME) pacman -Sy --noconfirm archlinuxcn-keyring
 
 install:
-	docker exec $(NAME) pacman -Syu --noconfirm $(PKGS) --overwrite "/etc/ssh/*"
+	docker exec $(NAME) $(call unquote,$(PM_INSTALL)) $(PKGS)
 
 user:
 	$(eval PASSWD := $(shell cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 18))

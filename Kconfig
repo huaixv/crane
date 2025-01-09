@@ -113,6 +113,12 @@ menu "Distribution Options"
         default "pacman" if PM_pacman
         default "apt" if PM_apt
         default "none"
+
+    config PM_INSTALL
+        string 
+        default "pacman -Syu --noconfirm --overwrite '*'" if PM_pacman
+        default "apt update && apt upgrade -y" if PM_apt
+        default "echo"
 endmenu
 
 menu "Docker Options"
