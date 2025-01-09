@@ -126,6 +126,13 @@ menu "Distribution Options"
         depends on PM_pacman
         help
             Copy pacman.conf to the container.
+    
+    config COPY_PACMAN_MIRRORLIST
+        bool "Copy pacman mirrorlist to the container"
+        default y
+        depends on PM_pacman
+        help
+            Copy pacman mirrorlist to the container.
 endmenu
 
 menu "Docker Options"
