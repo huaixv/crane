@@ -188,6 +188,52 @@ menu "Docker Options"
         default ""
         help
             Extra ports to expose, delimited by space.
+
+    config VOLUME_HOME
+        bool "Create volume for /home"
+        default y
+        help
+            Mount home directory.
+    config VOLUME_HOME_TO
+        string
+        default "./home" if VOLUME_HOME
+        depends on VOLUME_HOME
+
+    config VOLUME_ETC
+        bool "Create volume for /etc"
+        default n
+        help
+            Mount etc directory.
+    config VOLUME_ETC_TO
+        string
+        default "./etc" if VOLUME_ETC
+        depends on VOLUME_ETC
+
+    config VOLUME_VAR
+        bool "Create volume for /var"
+        default n
+        help
+            Mount var directory.
+    config VOLUME_VAR_TO
+        string
+        default "./var" if VOLUME_VAR
+        depends on VOLUME_VAR
+    
+    config VOLUME_SRV
+        bool "Create volume for /srv"
+        default n
+        help
+            Mount srv directory.
+    config VOLUME_SRV_TO
+        string
+        default "./srv" if VOLUME_SRV
+        depends on VOLUME_SRV
+    
+    config VOLUME_EXTRA
+        string
+        default ""
+        help
+            Extra volumes to mount, delimited by space.
 endmenu
 
 

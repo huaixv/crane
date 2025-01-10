@@ -16,17 +16,13 @@ include scripts/util.mk
 
 include scripts/docker.mk
 include scripts/port.mk
+include scripts/vol.mk
 include scripts/pkg.mk
 include scripts/user.mk
 
 include scripts/arch.mk
 
-CONFIG_MK ?= Makefile.cfg
-include $(CONFIG_MK)
-
-VOL_OPTS    := $(addprefix -v , $(VOLS))
-
-override RUN_OPTS += $(NETWORK_OPTS) $(VOL_OPTS)
+override RUN_OPTS += $(NETWORK_OPTS)
 
 run:
 	docker run $(RUN_BG_OPTS) $(RUN_OPTS) --name $(NAME) $(IMAGE):$(TAG)
