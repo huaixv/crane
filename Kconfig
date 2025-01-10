@@ -389,7 +389,8 @@ menu "User Options"
             Allow the user to use sudo.
     config ALLOW_SUDO_OPT
         string
-        default "-G sudo" if ALLOW_SUDO
+        default "-G wheel" if ALLOW_SUDO && DISTRO_archlinux
+        default "-G sudo" if ALLOW_SUDO && (DISTRO_debian || DISTRO_ubuntu)
         default ""
 
     config SH
