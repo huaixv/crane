@@ -15,6 +15,7 @@ else # ifneq ($(HAVE_DOT_CONFIG),y)
 include scripts/util.mk
 
 include scripts/docker.mk
+include scripts/port.mk
 include scripts/pkg.mk
 include scripts/user.mk
 
@@ -24,10 +25,8 @@ CONFIG_MK ?= Makefile.cfg
 include $(CONFIG_MK)
 
 VOL_OPTS    := $(addprefix -v , $(VOLS))
-PORT_OPTS   := $(addprefix -p , $(PORTS))
-EXPOSE_OPTS := $(addprefix --expose , $(EXPOSES))
 
-override RUN_OPTS += $(NETWORK_OPTS) $(VOL_OPTS) $(PORT_OPTS) $(EXPOSE_OPTS)
+override RUN_OPTS += $(NETWORK_OPTS) $(VOL_OPTS)
 
 run:
 	docker run $(RUN_BG_OPTS) $(RUN_OPTS) --name $(NAME) $(IMAGE):$(TAG)

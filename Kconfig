@@ -152,6 +152,42 @@ menu "Docker Options"
         default "--network=host" if NETWORK_host
         default "--network=bridge" if NETWORK_bridge
         default "" if NETWORK_none
+
+    config PORT_22
+        bool "Expose port 22"
+        default y
+        help
+            Expose port 22.
+    config PORT_22_TO
+        string
+        default "2222" if PORT_22
+        depends on PORT_22
+
+    config PORT_80
+        bool "Expose port 80"
+        default n
+        help
+            Expose port 80.
+    config PORT_80_TO
+        string
+        default "8080" if PORT_80
+        depends on PORT_80
+    
+    config PORT_443
+        bool "Expose port 443"
+        default n
+        help
+            Expose port 443.
+    config PORT_443_TO
+        string
+        default "8443" if PORT_443
+        depends on PORT_443
+
+    config PORT_EXTRA
+        string
+        default ""
+        help
+            Extra ports to expose, delimited by space.
 endmenu
 
 
