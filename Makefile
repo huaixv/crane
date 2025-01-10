@@ -12,10 +12,11 @@ all:
 	$(error Please configure this project first (e.g. "make menuconfig"))
 else # ifneq ($(HAVE_DOT_CONFIG),y)
 
+include scripts/util.mk
+
 include scripts/docker.mk
 include scripts/pkg.mk
 include scripts/user.mk
-include scripts/util.mk
 
 include scripts/arch.mk
 
