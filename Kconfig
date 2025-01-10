@@ -158,7 +158,7 @@ menu "Docker Options"
         help
             Expose port 22.
     config PORT_22_TO
-        string
+        string "Map port 22 to host port"
         default "2222" if PORT_22
         depends on PORT_22
 
@@ -168,7 +168,7 @@ menu "Docker Options"
         help
             Expose port 80.
     config PORT_80_TO
-        string
+        string "Map port 80 to host port"
         default "8080" if PORT_80
         depends on PORT_80
     
@@ -178,12 +178,12 @@ menu "Docker Options"
         help
             Expose port 443.
     config PORT_443_TO
-        string
+        string "Map port 443 to host port"
         default "8443" if PORT_443
         depends on PORT_443
 
     config PORT_EXTRA
-        string
+        string "Extra ports mappings"
         default ""
         help
             Extra ports to expose, delimited by space.
@@ -194,7 +194,7 @@ menu "Docker Options"
         help
             Mount home directory.
     config VOLUME_HOME_TO
-        string
+        string "Bind /home to host directory"
         default "./home" if VOLUME_HOME
         depends on VOLUME_HOME
 
@@ -204,7 +204,7 @@ menu "Docker Options"
         help
             Mount etc directory.
     config VOLUME_ETC_TO
-        string
+        string "Bind /etc to host directory"
         default "./etc" if VOLUME_ETC
         depends on VOLUME_ETC
 
@@ -214,7 +214,7 @@ menu "Docker Options"
         help
             Mount var directory.
     config VOLUME_VAR_TO
-        string
+        string "Bind /var to host directory"
         default "./var" if VOLUME_VAR
         depends on VOLUME_VAR
     
@@ -224,12 +224,12 @@ menu "Docker Options"
         help
             Mount srv directory.
     config VOLUME_SRV_TO
-        string
+        string "Bind /srv to host directory"
         default "./srv" if VOLUME_SRV
         depends on VOLUME_SRV
     
     config VOLUME_EXTRA
-        string
+        string "Extra volumes"
         default ""
         help
             Extra volumes to mount, delimited by space.
