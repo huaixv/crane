@@ -12,6 +12,8 @@ all:
 	$(error Please configure this project first (e.g. "make menuconfig"))
 else # ifneq ($(HAVE_DOT_CONFIG),y)
 
+all: run
+
 include scripts/util.mk
 
 include scripts/distro.mk
