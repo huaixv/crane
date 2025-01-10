@@ -21,9 +21,6 @@ include scripts/docker.mk
 include scripts/pkg.mk
 include scripts/user.mk
 
-install:
-	docker exec $(NAME) $(call unquote,$(PM_INSTALL)) $(PKGS)
-
 sshd:
 	docker exec $(NAME) /usr/bin/ssh-keygen -A
 	docker exec $(EXEC_BG_OPTS) $(NAME) /usr/bin/sshd -D
