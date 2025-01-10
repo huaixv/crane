@@ -56,11 +56,8 @@ passwd:
 	@echo "$(USER):$(PASSWD)" | tee /dev/stderr |\
 	docker exec -i $(NAME) chpasswd
 
-sshdgenkeys: ./ssh/ssh_host_ecdsa_key ./ssh/ssh_host_ed25519_key ./ssh/ssh_host_rsa_key
-./ssh/ssh_host_ecdsa_key ./ssh/ssh_host_ed25519_key ./ssh/ssh_host_rsa_key:
-	docker exec $(NAME) bash -c "/usr/bin/ssh-keygen -A"
-
-sshd: sshdgenkeys
+sshd:
+	docker exec $(NAME) /usr/bin/ssh-keygen -A
 	docker exec $(EXEC_BG_OPTS) $(NAME) /usr/bin/sshd -D
 
 endif # ifneq ($(HAVE_DOT_CONFIG),y)
