@@ -4,3 +4,5 @@ ALL_PKGS := $(shell cat Kconfig | grep -o 'config PKG_USE_[A-Za-z0-9_]*' | awk '
 # Enabled Packgaes
 PKGS :=
 $(foreach pkg,$(ALL_PKGS),$(if $(PKG_USE_$(pkg)),$(eval PKGS += $(PKG_$(pkg)))))
+
+include scripts/sshd.mk

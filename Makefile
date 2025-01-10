@@ -21,10 +21,6 @@ include scripts/docker.mk
 include scripts/pkg.mk
 include scripts/user.mk
 
-sshd:
-	docker exec $(NAME) /usr/bin/ssh-keygen -A
-	docker exec $(EXEC_BG_OPTS) $(NAME) /usr/bin/sshd -D
-
 endif # ifneq ($(HAVE_DOT_CONFIG),y)
 
 export CONFIG_=
