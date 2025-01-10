@@ -136,7 +136,7 @@ menu "Distribution Options"
 endmenu
 
 menu "Docker Options"
-    choice NETWORK_DRIVER
+    choice
         prompt "Network driver"
         default NETWORK_bridge
         config NETWORK_bridge
@@ -145,13 +145,12 @@ menu "Docker Options"
             bool "host"
         config NETWORK_none
             bool "none"
-    endchoice  
-
-    config NETWORK_OPTS
+    endchoice
+    config NETWORK_DRIVER
         string
-        default "--network=host" if NETWORK_host
-        default "--network=bridge" if NETWORK_bridge
-        default "" if NETWORK_none
+        default "bridge" if NETWORK_bridge
+        default "host" if NETWORK_host
+        default "none" if NETWORK_none
 
     config PORT_22
         bool "Expose port 22"

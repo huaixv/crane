@@ -15,14 +15,13 @@ else # ifneq ($(HAVE_DOT_CONFIG),y)
 include scripts/util.mk
 
 include scripts/docker.mk
+include scripts/net.mk
 include scripts/port.mk
 include scripts/vol.mk
 include scripts/pkg.mk
 include scripts/user.mk
 
 include scripts/arch.mk
-
-override RUN_OPTS += $(NETWORK_OPTS)
 
 run:
 	docker run $(RUN_BG_OPTS) $(RUN_OPTS) --name $(NAME) $(IMAGE):$(TAG)
