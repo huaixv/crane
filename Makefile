@@ -14,6 +14,7 @@ else # ifneq ($(HAVE_DOT_CONFIG),y)
 
 include scripts/docker.mk
 include scripts/pkg.mk
+include scripts/user.mk
 include scripts/util.mk
 
 include scripts/arch.mk
@@ -48,7 +49,7 @@ install:
 user:
 	$(eval PASSWD := $(shell cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 18))
 	@echo "$(USER):$(PASSWD)" | tee /dev/stderr
-	docker exec $(NAME) useradd $(USER) $(CREATE_GROUP_OPT) $(CREATE_HOME_OPT) $(call unquote,$(ALLOW_SUDO_OPT)) -s $(SH) --password $(shell perl -e "print crypt(\"$(PASSWD)\","password")")
+	docker exec $(NAME) useradd $(USER) $(CREATE_GROUP_OPT) $(CREATE_HOME_OPT) -s $(SH) --password $(shell perl -e "print crypt(\"$(PASSWD)\","password")")
 
 passwd:
 	$(eval PASSWD := $(shell cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 18))
