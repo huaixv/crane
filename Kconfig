@@ -234,6 +234,12 @@ menu "Docker Options"
         help
             Extra volumes to mount, delimited by space.
 
+    config HOSTS_LAB_MIRRORS
+        bool "Add hosts for mirrors.lab.loongson.cn"
+        default y
+        help
+            Add hosts for mirrors.lab.loongson.cn.
+
     config HOSTS_EXTRA
         string "Extra hosts entries"
         default ""
