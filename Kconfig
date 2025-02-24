@@ -233,6 +233,12 @@ menu "Docker Options"
         default ""
         help
             Extra volumes to mount, delimited by space.
+
+    config HOSTS_EXTRA
+        string "Extra hosts entries"
+        default ""
+        help
+            Extra hosts entries, delimited by space.
 endmenu
 
 

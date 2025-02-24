@@ -5,6 +5,7 @@ RUN_BG_OPTS  := -itd
 include scripts/net.mk
 include scripts/port.mk
 include scripts/vol.mk
+include scripts/hosts.mk
 
 run:
 	docker run $(RUN_BG_OPTS) $(RUN_OPTS) --name $(NAME) $(IMAGE):$(TAG)
