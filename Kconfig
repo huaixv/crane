@@ -245,6 +245,24 @@ menu "Docker Options"
         default ""
         help
             Extra hosts entries, delimited by space.
+
+    config CAP_SYS_ADMIN
+        bool "Add CAP_SYS_ADMIN capability"
+        default n
+        help
+            Add CAP_SYS_ADMIN capability, allowing to mount filesystems.
+
+    config CAP_PERFMON
+        bool "Add CAP_PERFMON capability"
+        default n
+        help
+            Add CAP_PERFMON capability, allowing to monitor performance counters.
+
+    config CAP_EXTRA
+        string "Extra capabilities"
+        default ""
+        help
+            Extra capabilities, delimited by space.
 endmenu
 
 
