@@ -92,6 +92,12 @@ menu "Distribution Options"
         default "base" if TAG_base
         default "base-devel" if TAG_base_devel
         default "multilib-devel" if TAG_multilib_devel
+        default "bookworm" if TAG_bookworm
+        default "bullseye" if TAG_bullseye
+        default "sid" if TAG_sid
+        default "focal" if TAG_focal
+        default "jammy" if TAG_jammy
+        default "noble" if TAG_noble
         default "latest"
 
     config PM_pacman
@@ -545,8 +551,14 @@ menu "User Options"
         help
             Allow the user to use sudo without password.
 
+    config DISTRO_debian_or_ubuntu
+        bool
+        default y if DISTRO_debian || DISTRO_ubuntu
+
     config SH
         string "Shell"
+        default "/usr/bin/fish" if PKG_USE_fish && DISTRO_debian_or_ubuntu
+        default "/usr/bin/zsh" if PKG_USE_zsh && DISTRO_debian_or_ubuntu
         default "/bin/fish" if PKG_USE_fish
         default "/bin/zsh" if PKG_USE_zsh
         default "/bin/bash"

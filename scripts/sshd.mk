@@ -7,3 +7,4 @@ ifeq ($(or $(DISTRO_debian), $(DISTRO_ubuntu)),y)
 else
 	docker exec $(NAME) /usr/bin/ssh-keygen -A
 	docker exec $(EXEC_BG_OPTS) $(NAME) /usr/bin/sshd -D
+endif

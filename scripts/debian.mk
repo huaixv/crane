@@ -11,6 +11,10 @@ endif
 ifeq ($(TAG_sid),y)
 	docker cp ./etc/apt/sources.list.sid $(NAME):/etc/apt/sources.list
 endif
+	docker exec $(NAME) apt update
+	docker exec $(NAME) apt install -y apt-transport-https ca-certificates
+endif
+
 
 install: debian_setup
 
