@@ -311,6 +311,18 @@ menu "Software Packages"
             depends on PKG_USE_vim
 
 
+    comment "Pagers"
+        config PKG_USE_less        
+            bool "less"
+            default y
+            help
+                Less pager.
+        config PKG_less
+            string
+            default "less"
+            depends on PKG_USE_less
+
+
     comment "Version Control Systems"
         config PKG_USE_git
             bool "git"
