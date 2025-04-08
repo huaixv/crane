@@ -455,6 +455,16 @@ menu "Software Packages"
             default "ripgrep"
             depends on PKG_USE_ripgrep
 
+        config PKG_USE_ranger
+            bool "ranger"
+            default y
+            help
+                Ranger file manager.
+        config PKG_ranger
+            string
+            default "ranger"
+            depends on PKG_USE_ranger
+
         config PKG_USE_rsync
             bool "rsync"
             default y
