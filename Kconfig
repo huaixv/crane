@@ -465,6 +465,16 @@ menu "Software Packages"
             default "ranger"
             depends on PKG_USE_ranger
 
+        config PKG_USE_htop
+            bool "htop"
+            default y
+            help
+                Htop process viewer.
+        config PKG_htop
+            string
+            default "htop"
+            depends on PKG_USE_htop
+
         config PKG_USE_rsync
             bool "rsync"
             default y
