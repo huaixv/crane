@@ -92,6 +92,9 @@ menu "Distribution Options"
         default "base" if TAG_base
         default "base-devel" if TAG_base_devel
         default "multilib-devel" if TAG_multilib_devel
+        default "bookworm" if TAG_bookworm
+        default "bullseye" if TAG_bullseye
+        default "sid" if TAG_sid
         default "latest"
 
     config PM_pacman
@@ -350,7 +353,8 @@ menu "Software Packages"
                 Python programming language.
         config PKG_python
             string
-            default "python"
+            default "python" if DISTRO_archlinux
+            default "python3" if DISTRO_debian
             depends on PKG_USE_python
         
         config PKG_USE_gcc
