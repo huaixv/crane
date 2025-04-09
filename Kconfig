@@ -537,10 +537,11 @@ menu "User Options"
         help
             Allow the user to use sudo without password.
 
+
     config SH
         string "Shell"
-        default "/bin/fish" if PKG_USE_fish
-        default "/bin/zsh" if PKG_USE_zsh
+        default "/usr/bin/fish" if PKG_USE_fish
+        default "/usr/bin/zsh" if PKG_USE_zsh
         default "/bin/bash"
         help
             The shell.
