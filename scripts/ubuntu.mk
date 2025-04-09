@@ -10,14 +10,11 @@ ifeq ($(TAG_jammy),y)
 endif
 ifeq ($(TAG_noble),y)
 	docker cp ./etc/apt/sources.list.noble $(NAME):/etc/apt/sources.list
-	# docker cp ./etc/apt/sources.list.d/ubuntu.sources $(NAME):/etc/apt/sources.list.d/ubuntu.sources
 endif
 	docker exec $(NAME) apt update
 	docker exec $(NAME) apt install -y ca-certificates 
 	docker exec $(NAME) update-ca-certificates
-
 endif
-
 
 install: ubuntu_setup
 

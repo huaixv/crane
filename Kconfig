@@ -551,16 +551,11 @@ menu "User Options"
         help
             Allow the user to use sudo without password.
 
-    config DISTRO_debian_or_ubuntu
-        bool
-        default y if DISTRO_debian || DISTRO_ubuntu
 
     config SH
         string "Shell"
-        default "/usr/bin/fish" if PKG_USE_fish && DISTRO_debian_or_ubuntu
-        default "/usr/bin/zsh" if PKG_USE_zsh && DISTRO_debian_or_ubuntu
-        default "/bin/fish" if PKG_USE_fish
-        default "/bin/zsh" if PKG_USE_zsh
+        default "/usr/bin/fish" if PKG_USE_fish
+        default "/usr/bin/zsh" if PKG_USE_zsh
         default "/bin/bash"
         help
             The shell.
