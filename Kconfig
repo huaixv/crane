@@ -133,6 +133,13 @@ menu "Distribution Options"
         depends on PM_pacman
         help
             Copy pacman mirrorlist to the container.
+    
+    config COPY_APT_SOURCES_LIST
+        bool "Copy apt sources.list to the container"
+        default y
+        depends on PM_apt
+        help
+            Copy apt sources.list to the container.
 endmenu
 
 menu "Docker Options"
