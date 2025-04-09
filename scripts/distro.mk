@@ -1,4 +1,4 @@
 include scripts/arch.mk
 
 install:
-	docker exec $(NAME) $(call unquote,$(PM_INSTALL)) $(PKGS)
+	docker exec $(NAME) bash -c '$(call unquote,$(PM_INSTALL)) $(call unquote,$(PKGS))'
