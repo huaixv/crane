@@ -95,6 +95,9 @@ menu "Distribution Options"
         default "bookworm" if TAG_bookworm
         default "bullseye" if TAG_bullseye
         default "sid" if TAG_sid
+        default "focal" if TAG_focal
+        default "jammy" if TAG_jammy
+        default "noble" if TAG_noble
         default "latest"
 
     config PM_pacman
@@ -354,7 +357,7 @@ menu "Software Packages"
         config PKG_python
             string
             default "python" if DISTRO_archlinux
-            default "python3" if DISTRO_debian
+            default "python3" if DISTRO_debian || DISTRO_ubuntu
             depends on PKG_USE_python
         
         config PKG_USE_gcc
