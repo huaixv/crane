@@ -133,6 +133,13 @@ menu "Distribution Options"
         depends on PM_pacman
         help
             Copy pacman mirrorlist to the container.
+    
+    config COPY_APT_SOURCES_LIST
+        bool "Copy apt sources.list to the container"
+        default y
+        depends on PM_apt
+        help
+            Copy apt sources.list to the container.
 endmenu
 
 menu "Docker Options"
@@ -343,7 +350,8 @@ menu "Software Packages"
                 Python programming language.
         config PKG_python
             string
-            default "python"
+            default "python" if DISTRO_archlinux
+            default "python3" if DISTRO_debian || DISTRO_ubuntu
             depends on PKG_USE_python
         
         config PKG_USE_gcc
