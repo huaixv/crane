@@ -297,6 +297,17 @@ menu "Software Packages"
             default "fish"
             depends on PKG_USE_fish
 
+        config PKG_USE_fisher
+            bool "fisher"
+            default y
+            depends on PKG_USE_fish && DISTRO_archlinux
+            help
+                Fisher package manager for fish shell.
+        config PKG_fisher
+            string
+            default "fisher"
+            depends on PKG_USE_fisher
+
         config PKG_USE_zsh
             bool "zsh"
             default n
