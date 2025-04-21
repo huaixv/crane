@@ -1,4 +1,4 @@
-sshd:
+sshd: start
 ifeq ($(or $(DISTRO_debian),$(DISTRO_ubuntu)),y)
 	docker exec $(NAME) mkdir -p /run/sshd 
 	docker exec $(NAME) chmod 755 /run/sshd
