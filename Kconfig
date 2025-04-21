@@ -276,6 +276,12 @@ menu "Docker Options"
         default ""
         help
             Extra capabilities, delimited by space.
+    
+    config CAP_PRIVILEGED
+        bool "Run container in privileged mode"
+        default n
+        help
+            Run container in privileged mode, allowing access to all devices.
 endmenu
 
 
