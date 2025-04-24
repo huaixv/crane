@@ -22,6 +22,14 @@ $(shell mkdir -p $(VOLUME_SRV_TO))
 VOL_OPTS += --mount $(VOL_BIND_OPT),dst=/srv,volume-opt=device=$(abspath $(VOLUME_SRV_TO))
 endif
 
+ifeq ($(VOLUME_DEV),y)
+VOL_OPTS += --mount type=volume,dst=/dev,src=$(abspath $(call unquote,$(VOLUME_DEV_TO)))
+endif
+
+ifeq ($(VOLUME_SYS),y)
+VOL_OPTS += --mount type=volume,dst=/sys,src=$(abspath $(call unquote,$(VOLUME_SYS_TO)))
+endif
+
 ifneq ($(VOLUME_EXTRA),)
 VOL_OPTS += $(addprefix --volume ,$(call unquote,$(VOLUME_EXTRA)))
 endif

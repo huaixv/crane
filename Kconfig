@@ -240,6 +240,26 @@ menu "Docker Options"
         string "Bind /srv to host directory"
         default "./srv" if VOLUME_SRV
         depends on VOLUME_SRV
+
+    config VOLUME_DEV
+        bool "Mount host /dev"
+        default n
+        help
+            Mount dev directory.
+    config VOLUME_DEV_TO
+        string
+        default "/dev" if VOLUME_DEV
+        depends on VOLUME_DEV
+
+    config VOLUME_SYS
+        bool "Mount host /sys"
+        default n
+        help
+            Mount sys directory.
+    config VOLUME_SYS_TO
+        string
+        default "/sys" if VOLUME_SYS
+        depends on VOLUME_SYS
     
     config VOLUME_EXTRA
         string "Extra volumes"
