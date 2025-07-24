@@ -165,6 +165,25 @@ menu "Docker Options"
         default "host" if NETWORK_host
         default "none" if NETWORK_none
 
+    choice
+        prompt "Restart policy"
+        default RESTART_POLICY_no
+        config RESTART_POLICY_no
+            bool "no"
+        config RESTART_POLICY_always
+            bool "always"
+        config RESTART_POLICY_on_failure
+            bool "on-failure"
+        config RESTART_POLICY_unless_stopped
+            bool "unless-stopped"
+    endchoice
+    config RESTART_POLICY
+        string
+        default "no" if RESTART_POLICY_no
+        default "always" if RESTART_POLICY_always
+        default "on-failure" if RESTART_POLICY_on_failure
+        default "unless-stopped" if RESTART_POLICY_unless_stopped
+
     config PORT_22
         bool "Expose port 22"
         default y

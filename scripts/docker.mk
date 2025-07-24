@@ -7,6 +7,7 @@ include scripts/docker/port.mk
 include scripts/docker/vol.mk
 include scripts/docker/hosts.mk
 include scripts/docker/cap.mk
+include scripts/docker/restart.mk
 
 run:
 	docker run $(RUN_BG_OPTS) $(RUN_OPTS) --name $(NAME) $(IMAGE):$(TAG)
