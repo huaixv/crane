@@ -2,11 +2,11 @@ EXEC_FG_OPTS := -it
 EXEC_BG_OPTS := -d
 RUN_BG_OPTS  := -itd
 
-include scripts/net.mk
-include scripts/port.mk
-include scripts/vol.mk
-include scripts/hosts.mk
-include scripts/cap.mk
+include scripts/docker/net.mk
+include scripts/docker/port.mk
+include scripts/docker/vol.mk
+include scripts/docker/hosts.mk
+include scripts/docker/cap.mk
 
 run:
 	docker run $(RUN_BG_OPTS) $(RUN_OPTS) --name $(NAME) $(IMAGE):$(TAG)
